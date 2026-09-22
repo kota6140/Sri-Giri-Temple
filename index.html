@@ -246,21 +246,7 @@
             }
         }
 
-        /* Ornate Temple Header Banner - Positioned BELOW Nav, Fully Visible */
-        .ornate-header-banner {
-            width: 100%;
-            background-color: var(--maroon-dark);
-            border-bottom: 2px solid var(--gold);
-            overflow: hidden;
-        }
-
-        .ornate-header-banner img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            display: block;
-            margin: 0 auto;
-        }
+        
 
         /* ==========================================================================
            3. CONTINUOUS SCROLL MAIN LAYOUT
@@ -314,35 +300,42 @@
            4. HOME SECTION
            ========================================================================== */
         .home-hero {
-            padding: 80px 0;
-            text-align: center;
-            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-alt) 100%);
+            padding: 120px 0 100px 0;
+            background: linear-gradient(to right, rgba(43, 22, 13, 0.9) 0%, rgba(43, 22, 13, 0.7) 40%, rgba(43, 22, 13, 0.1) 100%), url('images/image_2.jpg') center/cover no-repeat;
             border-bottom: 1px solid rgba(193, 98, 45, 0.15);
+            text-align: left;
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
         }
 
         .hero-grid {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 700px;
+            margin: 0;
         }
 
         
 
         .eyebrow-telugu {
-            color: var(--terracotta);
+            color: var(--white);
             font-weight: 700;
-            font-size: 16px;
+            font-size: 20px;
             margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
         }
 
         .hero-title {
-            font-size: 44px;
+            font-size: 56px;
             margin-bottom: 16px;
-            color: var(--maroon);
+            color: var(--white);
             letter-spacing: -0.5px;
+            line-height: 1.1;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.5);
         }
 
         @media (max-width: 768px) {
@@ -352,16 +345,17 @@
         }
 
         .hero-desc {
-            font-size: 18px;
-            color: var(--ink-light);
-            margin-bottom: 28px;
+            font-size: 19px;
+            color: var(--cream);
+            margin-bottom: 32px;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.5);
         }
 
         .btn-group {
             display: flex;
             flex-wrap: wrap;
-            gap: 14px;
-            justify-content: center;
+            gap: 16px;
+            justify-content: flex-start;
         }
 
         .btn-primary {
@@ -396,6 +390,23 @@
         .btn-secondary:hover {
             background-color: var(--maroon);
             color: var(--gold-light);
+        }
+        
+        .hero-btn {
+            background-color: transparent;
+            color: var(--white);
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .hero-btn:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: var(--white);
         }
 
         .hero-image-frame {
@@ -949,12 +960,7 @@
         </div>
     </header>
 
-    <!-- ==========================================================================
-         2. ORNATE TEMPLE HEADER BANNER - FULLY VISIBLE BELOW NAV
-         ========================================================================== -->
-    <div class="ornate-header-banner" role="banner">
-        <img src="images/image_1.jpg" alt="Srigiri Temple Sacred Ornate Header" />
-    </div>
+    
 
     <!-- ==========================================================================
          3. CONTINUOUS SCROLLING MAIN CONTENT
@@ -972,10 +978,10 @@
                             <h1 class="hero-title">The grace of Tirumala, on the Srigiri Hills.</h1>
                             <p class="hero-desc">A spiritual home for generations of devotees in Ongole since 1997.</p>
                             <div class="btn-group">
-                                <a href="https://wa.me/919246465282" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                                <a href="https://wa.me/919246465282" target="_blank" rel="noopener noreferrer" class="hero-btn">
                                     <span>Enroll for a Seva</span>
                                 </a>
-                                <a href="#darshan" class="btn-secondary">
+                                <a href="#darshan" class="hero-btn">
                                     <span>Plan Your Darshan</span>
                                 </a>
                             </div>
