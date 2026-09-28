@@ -95,7 +95,41 @@
         }
 
         /* ==========================================================================
-           2. STICKY NAVBAR (HEADER DESIGN MATCHING CURRENT VERSION)
+           2. ORNATE TEMPLE HEADER (IMAGE ABOVE NAV)
+           ========================================================================== */
+        .ornate-header {
+            width: 100%;
+            max-height: 282px;
+            overflow: hidden;
+            background-color: var(--cream);
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .ornate-header img {
+            width: 100%;
+            height: auto;
+            max-height: 282px;
+            object-fit: cover;
+            object-position: center center;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .ornate-header,
+            .ornate-header img {
+                max-height: 160px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ornate-header,
+            .ornate-header img {
+                max-height: 100px;
+            }
+        }
+
+        /* ==========================================================================
+           3. STICKY NAVBAR (HEADER DESIGN MATCHING CURRENT VERSION)
            ========================================================================== */
         .site-header {
             position: sticky;
@@ -1335,6 +1369,13 @@
     </style>
 </head>
 <body>
+
+    <!-- ==========================================================================
+         ORNATE TEMPLE HEADER (WHATSAPP PICTURE ABOVE NAV AS HEADER)
+         ========================================================================== -->
+    <div class="ornate-header" role="banner">
+        <img src="images/WhatsApp Image 2026-09-28 at 6.38.55 PM.jpeg" alt="Srigiri Sri Venkateswara Swamy Temple Header Banner" />
+    </div>
 
     <!-- ==========================================================================
          STICKY NAVBAR (CURRENT VERSION HEADER DESIGN)
