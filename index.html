@@ -399,13 +399,38 @@
            ========================================================================== */
         .home-hero {
             padding: 120px 0 100px 0;
-            background: linear-gradient(to right, rgba(43, 22, 13, 0.92) 0%, rgba(43, 22, 13, 0.75) 45%, rgba(43, 22, 13, 0.25) 100%), url('images/image_2.jpg') center 45%/cover no-repeat;
+            background: url('images/image_2.jpg') center 45%/cover no-repeat;
             border-bottom: 1px solid rgba(193, 98, 45, 0.2);
             position: relative;
+            overflow: hidden;
             min-height: 75vh;
             display: flex;
             align-items: center;
         }
+
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease;
+            z-index: 0;
+        }
+
+        .hero-video.active { opacity: 1; }
+
+        .home-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(43, 22, 13, 0.92) 0%, rgba(43, 22, 13, 0.75) 45%, rgba(43, 22, 13, 0.25) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .home-hero > .container { position: relative; z-index: 2; }
 
         @media (max-width: 768px) {
             .home-hero {
@@ -1579,6 +1604,8 @@
         <section id="home">
             <!-- Hero Introduction -->
             <div class="home-hero">
+                <video class="hero-video active" muted playsinline preload="auto" poster="images/image_2.jpg" src="images/videos/WhatsApp Video 2026-11-19 at 18.33.26.mp4"></video>
+                <video class="hero-video" muted playsinline preload="auto" src="images/videos/WhatsApp Video 2026-11-19 at 18.35.04.mp4"></video>
                 <div class="container">
                     <div class="hero-grid">
                         <div class="eyebrow-telugu telugu-font">శ్రీగిరి శ్రీ వేంకటేశ్వర స్వామి దేవస్థానం</div>
@@ -2526,6 +2553,27 @@
             startAutoSlideTimer();
         });
 
+        // 4. HERO BACKGROUND VIDEOS (TWO VIDEOS ALTERNATING IN A LOOP)
+        document.addEventListener('DOMContentLoaded', () => {
+            const vids = Array.from(document.querySelectorAll('.hero-video'));
+            if (vids.length < 2) return;
+            let cur = 0;
+            const show = (i) => {
+                vids.forEach((v, k) => v.classList.toggle('active', k === i));
+                vids[i].currentTime = 0;
+                vids[i].play().catch(() => {});
+            };
+            vids.forEach((v, i) => v.addEventListener('ended', () => {
+                cur = (i + 1) % vids.length;
+                show(cur);
+            }));
+            vids[0].play().catch(() => {});
+            // Resume if the browser paused playback (e.g. tab/battery saver)
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) vids[cur].play().catch(() => {});
+            });
+        });
+
         // 3. BACKGROUND DEVOTIONAL AUDIO PLAYBACK (AUTOMATIC / CONTINUOUS LOOP)
         document.addEventListener('DOMContentLoaded', () => {
             const bgAudio = document.getElementById('bgAudio');
@@ -2535,66 +2583,58 @@
 
             if (!bgAudio) return;
 
-            let isPlaying = false;
+            let userPaused = false;   // user explicitly turned music off
+            let silentAutoplay = false; // playing muted until a user gesture
 
-            function updateAudioUI(playing) {
-                isPlaying = playing;
-                if (audioIcon) audioIcon.textContent = playing ? '🔊' : '🔈';
-                if (audioWave) {
-                    if (playing) {
-                        audioWave.classList.remove('paused');
-                    } else {
-                        audioWave.classList.add('paused');
-                    }
-                }
+            function updateAudioUI(on) {
+                if (audioIcon) audioIcon.textContent = on ? '🔊' : '🔈';
+                if (audioWave) audioWave.classList.toggle('paused', !on);
             }
 
-            function playAudio() {
+            // Try sound first; if the browser blocks it, start muted (always allowed)
+            function autoStart() {
                 bgAudio.muted = false;
-                const playPromise = bgAudio.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        updateAudioUI(true);
-                    }).catch(error => {
-                        console.log('Browser deferred autoplay until user gesture:', error);
-                        updateAudioUI(false);
-                    });
-                }
-            }
-
-            function pauseAudio() {
-                bgAudio.pause();
-                updateAudioUI(false);
-            }
-
-            // 1. Attempt immediate autoplay on load
-            playAudio();
-
-            // 2. Comprehensive global interaction trigger: starts playing on ANY touch, click, scroll or keypress
-            const userGestureEvents = ['click', 'pointerdown', 'touchstart', 'touchmove', 'scroll', 'keydown', 'wheel'];
-            const handleUserGesture = () => {
-                if (!isPlaying) {
-                    playAudio();
-                }
-                userGestureEvents.forEach(evt => {
-                    window.removeEventListener(evt, handleUserGesture, true);
-                    document.removeEventListener(evt, handleUserGesture, true);
+                bgAudio.play().then(() => updateAudioUI(true)).catch(() => {
+                    bgAudio.muted = true;
+                    silentAutoplay = true;
+                    bgAudio.play().catch(() => {});
+                    updateAudioUI(false); // muted: badge invites a tap for sound
+                    if (audioToggleBtn) audioToggleBtn.title = 'Tap anywhere to hear devotional music';
                 });
-            };
+            }
 
-            userGestureEvents.forEach(evt => {
-                window.addEventListener(evt, handleUserGesture, { capture: true, once: false, passive: true });
-                document.addEventListener(evt, handleUserGesture, { capture: true, once: false, passive: true });
-            });
+            function unmuteOnGesture(e) {
+                if (!silentAutoplay || userPaused) return;
+                if (audioToggleBtn && audioToggleBtn.contains(e.target)) return;
+                bgAudio.muted = false;
+                bgAudio.play().then(() => {
+                    silentAutoplay = false;
+                    updateAudioUI(true);
+                    cleanup();
+                }).catch(() => {});
+            }
 
-            // 3. Manual toggle button (play/pause optional)
+            const gestureEvents = ['click', 'pointerup', 'mouseup', 'touchend', 'keydown'];
+            function cleanup() {
+                gestureEvents.forEach(evt => window.removeEventListener(evt, unmuteOnGesture, true));
+            }
+            gestureEvents.forEach(evt => window.addEventListener(evt, unmuteOnGesture, { capture: true, passive: true }));
+
+            autoStart();
+
+            // Manual on/off toggle
             if (audioToggleBtn) {
-                audioToggleBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    if (isPlaying) {
-                        pauseAudio();
+                audioToggleBtn.addEventListener('click', () => {
+                    const audible = !bgAudio.paused && !bgAudio.muted;
+                    if (audible) {
+                        userPaused = true;
+                        bgAudio.pause();
+                        updateAudioUI(false);
                     } else {
-                        playAudio();
+                        userPaused = false;
+                        silentAutoplay = false;
+                        bgAudio.muted = false;
+                        bgAudio.play().then(() => updateAudioUI(true)).catch(() => updateAudioUI(false));
                     }
                 });
             }
