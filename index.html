@@ -926,6 +926,21 @@
             margin-bottom: 0;
         }
 
+        .seva-pair-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 36px;
+        }
+
+        @media (max-width: 700px) {
+            .seva-pair-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-bottom: 28px;
+            }
+        }
+
         /* Life Events & Hindu Rituals List */
         .plain-rituals-grid {
             display: grid;
@@ -937,6 +952,9 @@
         @media (max-width: 700px) {
             .plain-rituals-grid {
                 grid-template-columns: 1fr;
+            }
+            .plain-rituals-grid .ritual-item {
+                grid-column: auto !important;
             }
         }
 
@@ -1534,6 +1552,26 @@
                 display: none;
             }
         }
+
+        /* Mobile polish: all phone sizes */
+        body { overflow-x: clip; }
+        img, video { max-width: 100%; }
+        h1, h2, h3, p, li, span, a { overflow-wrap: break-word; }
+
+        @media (max-width: 600px) {
+            .floating-whatsapp {
+                width: 50px !important;
+                height: 50px !important;
+                bottom: 20px !important;
+                right: 16px !important;
+            }
+            .site-footer { padding-bottom: 100px; }
+        }
+
+        @media (max-width: 360px) {
+            .container { padding-left: 14px; padding-right: 14px; }
+            .hero-title { font-size: 28px; }
+        }
     </style>
 </head>
 <body>
@@ -2016,7 +2054,7 @@
                 </div>
 
                 <!-- 4. Special Sevas & Venues -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 36px;">
+                <div class="seva-pair-grid">
                     <div class="seva-block" style="margin-bottom: 0;">
                         <h3>Special Sevas</h3>
                         <ul class="devotional-list">
