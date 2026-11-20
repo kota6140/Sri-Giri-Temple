@@ -1604,8 +1604,7 @@
         <section id="home">
             <!-- Hero Introduction -->
             <div class="home-hero">
-                <video class="hero-video active" muted playsinline preload="auto" poster="images/image_2.jpg" src="images/videos/WhatsApp Video 2026-11-19 at 18.33.26.mp4"></video>
-                <video class="hero-video" muted playsinline preload="auto" src="images/videos/WhatsApp Video 2026-11-19 at 18.35.04.mp4"></video>
+                <video class="hero-video active" autoplay muted loop playsinline preload="auto" poster="images/image_2.jpg" src="images/videos/FILM%20GALLERY2%20(1).mp4"></video>
                 <div class="container">
                     <div class="hero-grid">
                         <div class="eyebrow-telugu telugu-font">శ్రీగిరి శ్రీ వేంకటేశ్వర స్వామి దేవస్థానం</div>
@@ -2553,24 +2552,14 @@
             startAutoSlideTimer();
         });
 
-        // 4. HERO BACKGROUND VIDEOS (TWO VIDEOS ALTERNATING IN A LOOP)
+        // 4. HERO BACKGROUND VIDEO (SINGLE VIDEO, LOOPING)
         document.addEventListener('DOMContentLoaded', () => {
-            const vids = Array.from(document.querySelectorAll('.hero-video'));
-            if (vids.length < 2) return;
-            let cur = 0;
-            const show = (i) => {
-                vids.forEach((v, k) => v.classList.toggle('active', k === i));
-                vids[i].currentTime = 0;
-                vids[i].play().catch(() => {});
-            };
-            vids.forEach((v, i) => v.addEventListener('ended', () => {
-                cur = (i + 1) % vids.length;
-                show(cur);
-            }));
-            vids[0].play().catch(() => {});
-            // Resume if the browser paused playback (e.g. tab/battery saver)
+            const v = document.querySelector('.hero-video');
+            if (!v) return;
+            v.muted = true;
+            v.play().catch(() => {});
             document.addEventListener('visibilitychange', () => {
-                if (!document.hidden) vids[cur].play().catch(() => {});
+                if (!document.hidden) v.play().catch(() => {});
             });
         });
 
