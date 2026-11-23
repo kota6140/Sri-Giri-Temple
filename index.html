@@ -1474,8 +1474,10 @@
             position: fixed;
             bottom: 28px;
             left: 28px;
-            height: 52px;
-            padding: 0 18px;
+            width: 58px;
+            height: 58px;
+            padding: 0;
+            justify-content: center;
             background: linear-gradient(135deg, var(--maroon) 0%, #150A05 100%);
             color: var(--gold-light);
             border: 1.5px solid var(--gold);
@@ -1500,16 +1502,12 @@
         }
 
         .audio-icon {
-            font-size: 18px;
+            font-size: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .audio-text {
-            font-size: 12.5px;
-            letter-spacing: 0.5px;
-        }
 
         .audio-wave {
             display: flex;
@@ -1524,6 +1522,11 @@
             background-color: var(--gold);
             border-radius: 2px;
             animation: soundWave 1.2s infinite ease-in-out;
+        }
+
+        .floating-audio-btn .audio-text,
+        .floating-audio-btn .audio-wave {
+            display: none;
         }
 
         .audio-wave span:nth-child(1) { animation-delay: 0s; }
@@ -1544,14 +1547,23 @@
         @media (max-width: 600px) {
             .floating-audio-btn {
                 bottom: 20px;
-                left: 18px;
-                height: 46px;
-                padding: 0 14px;
-            }
-            .audio-text {
-                display: none;
+                left: 16px;
+                width: 50px;
+                height: 50px;
+                padding: 0;
             }
         }
+
+        .volunteer-cta {
+            margin-top: 40px;
+            padding: 32px 28px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--cream-card) 0%, var(--cream-alt) 100%);
+            border: 1px solid rgba(193, 98, 45, 0.25);
+            border-radius: var(--radius-md, 14px);
+        }
+        .volunteer-cta h3 { margin-bottom: 8px; }
+        .volunteer-cta p { max-width: 560px; margin: 0 auto 20px auto; }
 
         /* Mobile polish: all phone sizes */
         body { overflow-x: clip; }
@@ -1580,7 +1592,7 @@
          BACKGROUND DEVOTIONAL AUDIO (AUTOPLAY CONTINUOUS LOOP)
          ========================================================================== -->
     <audio id="bgAudio" loop autoplay preload="auto">
-        <source src="images/WhatsApp Audio 2026-09-28 at 6.58.58 PM.mpeg" type="audio/mpeg">
+        <source src="images/devotional-music.mpeg" type="audio/mpeg">
     </audio>
 
     <!-- Floating Audio Control Button -->
@@ -1596,7 +1608,7 @@
          ORNATE TEMPLE HEADER (WHATSAPP PICTURE ABOVE NAV AS HEADER)
          ========================================================================== -->
     <div class="ornate-header" role="banner">
-        <img src="images/WhatsApp Image 2026-09-28 at 6.38.55 PM.jpeg" alt="Srigiri Sri Venkateswara Swamy Temple Header Banner" />
+        <img src="images/header-banner-photo.jpeg" alt="Srigiri Sri Venkateswara Swamy Temple Header Banner" />
     </div>
 
     <!-- ==========================================================================
@@ -1625,7 +1637,7 @@
                     <a href="#sevas">Sevas</a>
                     <a href="#media">Media</a>
                     <a href="#darshan">Darshan</a>
-                    <a href="https://wa.me/919246465282" target="_blank" rel="noopener noreferrer" class="nav-cta-btn">
+                    <a href="https://wa.me/919246465282" target="_blank" rel="noopener noreferrer" class="nav-cta-btn" data-track="whatsapp-enroll-nav">
                         <span>Enroll for a Seva</span>
                     </a>
                 </div>
@@ -1642,14 +1654,14 @@
         <section id="home">
             <!-- Hero Introduction -->
             <div class="home-hero">
-                <video class="hero-video active" autoplay muted loop playsinline preload="auto" poster="images/image_2.jpg" src="images/videos/FILM%20GALLERY2%20(1).mp4"></video>
+                <video class="hero-video active" autoplay muted loop playsinline preload="auto" poster="images/image_2.jpg" src="images/videos/film-gallery.mp4"></video>
                 <div class="container">
                     <div class="hero-grid">
                         <div class="eyebrow-telugu telugu-font">శ్రీగిరి శ్రీ వేంకటేశ్వర స్వామి దేవస్థానం</div>
                         <h1 class="hero-title">The grace of Tirumala, on the Srigiri Hills.</h1>
                         <p class="hero-desc">A spiritual home for generations of devotees since 1997.</p>
                         <div class="btn-group">
-                            <a href="https://wa.me/919246465282" target="_blank" rel="noopener noreferrer" class="hero-btn-primary">
+                            <a href="https://wa.me/919246465282" target="_blank" rel="noopener noreferrer" class="hero-btn-primary" data-track="whatsapp-enroll-hero">
                                 <span>Enroll for a Seva</span>
                             </a>
                             <a href="#darshan" class="hero-btn-secondary">
@@ -1672,21 +1684,11 @@
                     <div class="divine-grid">
                         <div class="divine-card">
                             <div class="divine-card-img-wrap">
-                                <img src="images/image_3.jpg" alt="Srigiri Temple Architecture" />
+                                <img src="images/image_3.jpg" alt="Srigiri Gopuram and Garbha Gudi" />
                             </div>
                             <div class="divine-card-body">
                                 <h3 class="divine-card-title">Temple Architecture</h3>
-                                <p class="divine-card-text">Garbha Gudi and Gopuram constructed following traditional Vaikhanasa Agama Sastra principles on the holy Srigiri hills.</p>
-                            </div>
-                        </div>
-
-                        <div class="divine-card">
-                            <div class="divine-card-img-wrap">
-                                <img src="images/image_2.jpg" alt="Sri Venkateswara Swamy Deity" />
-                            </div>
-                            <div class="divine-card-body">
-                                <h3 class="divine-card-title">Sri Venkateswara Swamy</h3>
-                                <p class="divine-card-text">The 8'8" Mula Varlu carved from sacred Krishna Sila, bestowing divine blessings equal to the grace of Tirumala.</p>
+                                <p class="divine-card-text">The Gopuram and Garbha Gudi are built following traditional Vaikhanasa Agama Sastra principles. Within the sanctum stands the 8'8" Moola Virat, carved from sacred Krishna Sila, bestowing divine blessings equal to the grace of Tirumala.</p>
                             </div>
                         </div>
 
@@ -1696,7 +1698,17 @@
                             </div>
                             <div class="divine-card-body">
                                 <h3 class="divine-card-title">Spiritual Guidance</h3>
-                                <p class="divine-card-text">Blessed under the patronage of Sri Siddheswari Peetham, Courtallam, and founding guidance of Sri Aluru Venkata Ramana Rao Garu.</p>
+                                <p class="divine-card-text">The temple is run by His Holiness Sri Sri Sri Siddheswarananda Bharathi Swamiji, Courtallam. Detailed accounts are sent to the Peetam periodically.</p>
+                            </div>
+                        </div>
+
+                        <div class="divine-card">
+                            <div class="divine-card-img-wrap">
+                                <img src="images/image_14.jpg" alt="Founder Chairman offering Golden Lotus Flowers to Lord Balaji" />
+                            </div>
+                            <div class="divine-card-body">
+                                <h3 class="divine-card-title">Devotion (Offering Golden Lotus Flowers)</h3>
+                                <p class="divine-card-text">108 gold flowers were offered by the Founder Chairman in 2006, and are used monthly for the Srivari Suvarna Ashtadala Padma Paadarchana Seva.</p>
                             </div>
                         </div>
                     </div>
@@ -1789,11 +1801,11 @@
                             <div class="thread-header">
                                 <div class="thread-mark"></div>
                                 <h3>Sacred Deities &amp; Offerings</h3>
-                                <div class="thread-teaser">The Mula Varlu is carved from Krishna Sila — said to resound with the syllable Om — at a scale nearly equal to Tirumala's deity.</div>
+                                <div class="thread-teaser">The Moola Virat is carved from Krishna Sila — said to resound with the syllable Om — at a scale nearly equal to Tirumala's deity.</div>
                             </div>
                             <div class="thread-body">
-                                <p><strong>Sri Vari Mula Varlu:</strong> offered by Sri Moravaneni Kotaiah, Smt Venkata Subbamma, and their sons, of Yerrabalem village, Korsepadu Mandal. The 8'8" Mula Varlu was carved from Krishna Sila by Maha Silpi Sri N. Ratnachari of Chennai.</p>
-                                <p><strong>Sri Vari Utsava Murthulu:</strong> (Srivaru with consorts Sridevi and Bhoodevi) was offered by Sri Devathu Musala Rao and Smt Kusuma Kumari of Ongole.</p>
+                                <p><strong>Sri Vari Moola Virat:</strong> offered by Sri Moravaneni Kotaiah, Smt Venkata Subbamma, and their sons Raghavendra Rao, Baji Seetha Ratnam, Prabhakar Rao, Usha, of Yerrabalem village, Korsepadu Mandal. The 8'8" Moola Virat was carved from Krishna Sila by Maha Silpi Sri N. Ratnachari of Chennai.</p>
+                                <p><strong>Sri Vari Utsava Murthulu:</strong> (Srivaru with consorts Sridevi and Bhoodevi) was offered by Sri Devathu Musala Rao (Papa), S/o Devathu Sri Ranganatham and Sesharatnamma, and Smt Kusuma Kumari of Ongole.</p>
                                 <p><strong>Gold &amp; silver ornaments:</strong> 108 gold flowers were offered by the founder in 2006, used monthly for the Srivari Suvarna Ashtadala Padma Paadarchana Seva. The gold crown (Suvarna Kireetam) was donated by Sri Aluru Ramakoteswara Vamsee (USA). The Bangaru Chatari was donated by sixteen close associates of the Dharmakarthas' families.</p>
                             </div>
                         </div>
@@ -1818,10 +1830,6 @@
                                 <div class="role-item">
                                     <span class="role-title">Chief Security Advisor</span>
                                     <span class="role-desc">Shri G. Surya Prakasa Rao, IPS — retired Inspector General of Police, Coastal Security.</span>
-                                </div>
-                                <div class="role-item">
-                                    <span class="role-title">Aasthana Gaurava Naada Swara Vidwan</span>
-                                    <span class="role-desc">Sri Pathakamuru Sambaiah.</span>
                                 </div>
                                 <div class="role-item">
                                     <span class="role-title">Temple Barber (Nayi Brahmin)</span>
@@ -1849,11 +1857,11 @@
                             <div class="thread-header">
                                 <div class="thread-mark"></div>
                                 <h3>Community Service</h3>
-                                <div class="thread-teaser">The Srigiri Gosamrakshana Samithi and Sri Giri Vidya Nidhi extend the temple's mission beyond its walls — to cows and to students.</div>
+                                <div class="thread-teaser">The Srigiri Gosamrakshana Samithi and Srigiri Vidya Nidhi extend the temple's mission beyond its walls — to cows and to students.</div>
                             </div>
                             <div class="thread-body">
-                                <p><strong>Srigiri Gosamrakshana Samithi (Goshala):</strong> was promoted and funded by Sri K.B.M.V. Subramanyam and Sri Jada Koteswara Rao Yadav. Milk and dairy products from the goshala are used for daily temple rituals; the cows are insured and monitored by veterinary doctors, with finances managed by Dharmakarthas 3 and 5 through Andhra Bank, Ongole.</p>
-                                <p><strong>Sri Giri Vidya Nidhi:</strong> provides financial assistance to economically backward Hindu students who have earned academic distinction. Its principal patrons are Founder Chairman Sri A.V. Ramana Rao and his sons, Dr. Srinivas Charan, Rajeev (USA), and Jai Sankar, together with the Dharmakarthas.</p>
+                                <p><strong>Srigiri Gosamrakshana Samithi (Gaushala):</strong> was promoted and funded by Sri K.B.M.V. Subramanyam and Sri Jada Koteswara Rao Yadav. Milk and dairy products from the gaushala are used for daily temple rituals; the cows are insured and monitored by veterinary doctors, with finances managed by Dharmakarthas 3 and 5 through Andhra Bank, Ongole.</p>
+                                <p><strong>Srigiri Vidya Nidhi:</strong> provides financial assistance to economically backward Hindu students who have earned academic distinction. Its principal patrons are Founder Chairman Sri A.V. Ramana Rao and his sons, Dr. Sreenivasa Charan Rajeev Aluru (USA), and Jai Sankar, together with the Dharmakarthas.</p>
                                 <p><strong>Prasadam schemes:</strong> Sasvatha Archana, Sasvatha Abhishekam, and Sasvatha Uchitha Prasadam — each scheme's funds are deposited into a dedicated bank account.</p>
                             </div>
                         </div>
@@ -1870,6 +1878,14 @@
                                 <p>Chinmaya Mission Swamijis from the Prakasam, Nellore, and Guntur districts support this program, helping impart cultural values, sacred scriptures, and spiritual discipline to the next generation.</p>
                             </div>
                         </div>
+                    </div>
+                    <!-- Volunteer Interest CTA -->
+                    <div class="volunteer-cta" id="volunteer">
+                        <h3>Volunteer at Srigiri</h3>
+                        <p>Would you like to serve the temple and its community? Share your interest with us on WhatsApp.</p>
+                        <a href="https://wa.me/919246465282?text=I%20am%20interested%20in%20volunteering%20at%20Srigiri.%20My%20name%3A%20%20Ph%3A" target="_blank" rel="noopener noreferrer" class="hero-btn-primary" data-track="whatsapp-volunteer">
+                            <span>I'm Interested in Volunteering</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -2014,7 +2030,7 @@
                                 <span>Karthikamasam</span>
                             </div>
                             <div class="cal-month-body">
-                                <div class="cal-event">Astothara Sathasahastra Kalasabhishekam</div>
+                                <div class="cal-event">Sahasra Kalasabhishekam</div>
                                 <div class="cal-event">Sahasra Deepalankarana Seva</div>
                                 <div class="cal-event">Deepawali Asthanam</div>
                             </div>
@@ -2135,7 +2151,7 @@
                     <h3 style="font-size: 24px; margin-bottom: 8px;">Enroll for a Seva or Book a Life-Event Ritual</h3>
                     <p style="max-width: 600px; margin: 0 auto 24px auto;">For seva sponsorship, Kalyana Mandapam availability, or personal ritual bookings, please contact the temple authorities directly.</p>
                     <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-                        <a href="https://wa.me/919246465282" target="_blank" rel="noopener noreferrer" class="hero-btn-primary">
+                        <a href="https://wa.me/919246465282" target="_blank" rel="noopener noreferrer" class="hero-btn-primary" data-track="whatsapp-book-seva">
                             <span>Book Seva via WhatsApp (+91 92464 65282)</span>
                         </a>
                         <a href="tel:+919246465282" class="hero-btn-secondary" style="border-color: var(--maroon); color: var(--maroon);">
@@ -2200,6 +2216,9 @@
                     <div class="telugu-font" style="font-size: 24px; color: var(--terracotta); font-weight: 700; margin-bottom: 8px;">దర్శనం</div>
                     <h2 class="section-title">Darshan at Srigiri</h2>
                     <p class="section-subtitle">Everything you need to plan your visit — updated timings, visitor guidelines, and location.</p>
+                    <div style="margin-top: 22px;">
+                        <a href="#sevas" class="hero-btn-primary" data-track="browse-sevas"><span>Browse Sevas</span></a>
+                    </div>
                 </div>
 
                 <div class="darshan-grid">
@@ -2277,7 +2296,7 @@
                             <div class="contact-icon">💬</div>
                             <div class="contact-details">
                                 <h4>WhatsApp Support</h4>
-                                <p><a href="https://wa.me/919246465282" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-weight: 600;">Chat on WhatsApp (+91 92464 65282)</a></p>
+                                <p><a href="https://wa.me/919246465282" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-weight: 600;" data-track="whatsapp-darshan-support">Chat on WhatsApp (+91 92464 65282)</a></p>
                             </div>
                         </div>
 
@@ -2297,7 +2316,7 @@
     <!-- ==========================================================================
          FLOATING WHATSAPP BUTTON (ALWAYS ACCESSIBLE)
          ========================================================================== -->
-    <a href="https://wa.me/919246465282" target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Chat on WhatsApp with Srigiri Temple">
+    <a href="https://wa.me/919246465282" target="_blank" rel="noopener noreferrer" data-track="whatsapp-floating" class="floating-whatsapp" aria-label="Chat on WhatsApp with Srigiri Temple">
         <svg class="whatsapp-icon" viewBox="0 0 32 32"><path d="M16 2A13 13 0 0 0 4.68 21.25L3 27.54l6.45-1.66A13 13 0 1 0 16 2zm0 24a11 11 0 0 1-5.6-1.54l-.4-.24-4.15 1.07 1.1-4.04-.26-.42A11 11 0 1 1 16 26zm6-8.23c-.33-.17-1.95-.96-2.25-1.07s-.52-.17-.74.17-.86 1.07-1.05 1.29-.39.24-.72.08a9.14 9.14 0 0 1-2.67-1.65 10.1 10.1 0 0 1-1.85-2.3c-.19-.33 0-.5.14-.66s.33-.39.5-.58.22-.33.33-.55a.64.64 0 0 0 0-.61c-.08-.17-.74-1.78-1.02-2.44s-.54-.56-.74-.57h-.63a1.22 1.22 0 0 0-.89.41 3.73 3.73 0 0 0-1.16 2.77 6.47 6.47 0 0 0 1.36 3.44 14.83 14.83 0 0 0 5.68 5 18.72 18.72 0 0 0 1.9.7 4.57 4.57 0 0 0 2.1.13 3.43 3.43 0 0 0 2.25-1.59 2.8 2.8 0 0 0 .2-1.59c-.07-.12-.3-.23-.63-.4z"/></svg>
     </a>
 
@@ -2310,7 +2329,7 @@
                 <div class="footer-brand">
                     <div class="telugu-font" style="font-size: 19px; color: var(--gold-light); margin-bottom: 6px;">శ్రీగిరి శ్రీ వేంకటేశ్వర స్వామి దేవస్థానం</div>
                     <h3>Srigiri Sri Venkateswara Swamy Temple</h3>
-                    <p>A sacred kshetram of grace, devotion, and divine blessings in Ongole, Andhra Pradesh. Sri Siddeswar Peetha Palitha. Srigirivasa Govinda!</p>
+                    <p>A sacred kshetram of grace, devotion, and divine blessings in Ongole, Andhra Pradesh. Srigirivasa Govinda!</p>
                 </div>
 
                 <div class="footer-column">
@@ -2321,6 +2340,7 @@
                         <li><a href="#sevas">Sevas and Rituals</a></li>
                         <li><a href="#media">Media and Gallery</a></li>
                         <li><a href="#darshan">Darshan Timings</a></li>
+                        <li><a href="https://wa.me/919246465282?text=I%20am%20interested%20in%20volunteering%20at%20Srigiri.%20My%20name%3A%20%20Ph%3A" target="_blank" rel="noopener noreferrer" data-track="whatsapp-volunteer-footer">Volunteer with Us</a></li>
                     </ul>
                 </div>
 
@@ -2336,10 +2356,10 @@
             </div>
 
             <div class="footer-bottom">
-                <div>&copy; 2026 Srigiri Sri Venkateswara Swamy Temple, Ongole. Sri Siddeswar Peetha Palitha.</div>
+                <div>&copy; 2026 Srigiri Sri Venkateswara Swamy Temple, Ongole.</div>
                 <div style="margin-top: 4px; color: #BFA992;">Under the spiritual guidance of Sri Siddheswari Peetham, Courtallam.</div>
                 <div class="footer-trust-badge">No Government or TTD funding &nbsp;&middot;&nbsp; All offerings via audited Hundi</div>
-                <div style="margin-top: 10px; font-size: 12px; color: #BFA992;">Presented by <a href="https://scorelabsinc.com/" target="_blank" rel="noopener noreferrer" style="color: var(--gold); text-decoration: underline;">https://scorelabsinc.com/</a></div>
+                <div style="margin-top: 10px; font-size: 12px; color: #BFA992;">Presented with devotion and seva by <a href="https://scorelabsinc.com/" target="_blank" rel="noopener noreferrer" style="color: var(--gold); text-decoration: underline;">scorelabsinc.com</a>.</div>
             </div>
         </div>
     </footer>
@@ -2429,9 +2449,9 @@
             { src: 'images/image_9.jpg', title: 'Srivari Unjal Seva Festival' },
             { src: 'images/image_10.jpg', title: 'Sri Garimella Balakrishna Prasad Garu at Srigiri Unjal Seva' },
             { src: 'images/image_11.jpg', title: "Founder Sri Aluru Venkata Ramana Rao Garu's Srigiri Building Journey — Consecration Event" },
-            { src: 'images/image_12.jpg', title: "Srigiri Building Journey — Temple Construction Milestone" },
-            { src: 'images/image_13.jpg', title: "Srigiri Building Journey — Cultural Gathering" },
-            { src: 'images/image_14.jpg', title: "Srigiri Building Journey — Devotee Sabha" }
+            { src: 'images/image_12.jpg', title: "Founder Sri Aluru Venkata Ramana Rao Garu's Journey — Birthday celebrations with students from Sri Aluru Seetharamamma and Rama Koteswara Rao Veda Paatsala, donated by Sri Aluru Venkata Ramana Rao Garu." },
+            { src: 'images/image_13.jpg', title: "Srigiri Building Journey — Fundraising Event with Sri S.P. Balasubrahmanyam Garu." },
+            { src: 'images/image_14.jpg', title: "Srigiri Building Journey — Founder Chairman Sri Aluru Venkata Ramana Rao Garu offering Golden Lotus Flowers to Lord Balaji in presence of His Holiness Sri Sri Sri Siddheswarananda Bharathi Swamiji." }
         ];
 
         let currentSlideIndex = 0;
@@ -2600,6 +2620,29 @@
                 if (!document.hidden) v.play().catch(() => {});
             });
         });
+
+        // 5. SITE-WIDE ANALYTICS HOOKS (WhatsApp logging + heat-map)
+        // Set these once the backend / heat-map project exist. Left blank = nothing is sent.
+        const SRIGIRI_LOG_ENDPOINT = '';   // e.g. 'https://your-api.example.com/api/whatsapp-log'
+        const SRIGIRI_CLARITY_ID = '';     // Microsoft Clarity project ID (free heat-maps)
+
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('a[data-track^="whatsapp"]');
+            if (!link || !SRIGIRI_LOG_ENDPOINT) return;
+            try {
+                navigator.sendBeacon(SRIGIRI_LOG_ENDPOINT, new Blob([JSON.stringify({
+                    touchpoint: link.getAttribute('data-track'),
+                    page: location.href,
+                    time: new Date().toISOString()
+                })], { type: 'application/json' }));
+            } catch (err) { /* never block the WhatsApp link */ }
+        }, true);
+
+        if (SRIGIRI_CLARITY_ID) {
+            (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script",SRIGIRI_CLARITY_ID);
+        }
 
         // 3. BACKGROUND DEVOTIONAL AUDIO PLAYBACK (AUTOMATIC / CONTINUOUS LOOP)
         document.addEventListener('DOMContentLoaded', () => {
